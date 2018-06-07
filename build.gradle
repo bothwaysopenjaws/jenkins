@@ -1,10 +1,46 @@
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'pmd'
 
 repositories {
+    jcenter()
     mavenCentral()
 }
 dependencies {
     compile 'joda-time:joda-time:2.10'
     testCompile("junit:junit:4.12")
+}
+pmd {
+    pmdTest.enabled = false
+    toolVersion='5.8.1'
+   //ruleSetFiles = files("{$gradleExtra}/pmd_rule_lvl1.xml")
+
+    ruleSets = [
+            "java-basic",
+            "java-braces",
+            "java-clone",
+            "java-codesize",
+            "java-comments",
+            "java-controversial",
+            "java-coupling",
+            "java-design",
+            "java-empty",
+            "java-finalizers",
+            "java-imports",
+            "java-naming",
+            "java-optimizations",
+            "java-strings",
+            "java-unusedcode"
+    ]
+    //ignoreFailures = true
+}
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+test {
+    ignoreFailures = true
 }

@@ -3,8 +3,7 @@
  *     http://www.apache.org/licenses/LICENSE-2.0
  * limitations under the License.
  */
-
-package test;
+package application;
 
 /**
  * Class for  application
@@ -26,7 +25,7 @@ public class Application {
      * @param secondValue second value.
      * @return result of the addition.
      */
-    public static int add(final int firstValue, final int secondValue) {
+    public int add(final int firstValue, final int secondValue) {
         return firstValue + secondValue;
     }
 }
