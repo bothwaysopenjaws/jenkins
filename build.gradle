@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
+apply plugin: 'jacoco'
 
 repositories {
     jcenter()
@@ -10,6 +11,9 @@ repositories {
 dependencies {
     compile 'joda-time:joda-time:2.10'
     testCompile("junit:junit:4.12")
+    // https://mvnrepository.com/artifact/de.aaschmid/gradle-cpd-plugin
+    compile group: 'de.aaschmid', name: 'gradle-cpd-plugin', version: '1.1'
+
 }
 pmd {
     pmdTest.enabled = false
@@ -39,9 +43,9 @@ tasks.withType(Pmd) {
     reports {
         xml.enabled true
         html.enabled true
+('config/xsl/checkstyle-custom.xsl')
     }
 }
-
 test {
     ignoreFailures = true
 }
